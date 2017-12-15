@@ -111,7 +111,7 @@ def build_arch(input, coord_add, is_train: bool, num_classes: int):
     bias_initializer = tf.truncated_normal_initializer(
         mean=0.0, stddev=0.01)  # tf.constant_initializer(0.0)
     # The paper didnot mention any regularization, a common l2 regularizer to weights is added here
-    weights_regularizer = tf.contrib.layers.l2_regularizer(5e-04)
+    weights_regularizer = tf.contrib.layers.l2_regularizer(1e-04)
 
     # weights_initializer=initializer,
     with slim.arg_scope([slim.conv2d], trainable=is_train, biases_initializer=bias_initializer, weights_regularizer=weights_regularizer):

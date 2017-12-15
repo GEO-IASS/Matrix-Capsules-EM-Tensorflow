@@ -39,11 +39,11 @@ def main(args):
             'global_step', [], initializer=tf.constant_initializer(0), trainable=False)
 
         """Get batches per epoch."""
-        num_batches_per_epoch = int(dataset_size / cfg.batch_size)
+        num_batches_per_epoch = int(dataset_size / cfg.batch_size * 0.1)
 
         """Use exponential decay leanring rate?"""
         lrn_rate = tf.maximum(tf.train.exponential_decay(
-            1e-3, global_step, num_batches_per_epoch, 0.8), 1e-5)
+            1e-3, global_step, num_batches_per_epoch, 0.8), 5e-5)
         tf.summary.scalar('learning_rate', lrn_rate)
         opt = tf.train.AdamOptimizer()  # lrn_rate
 
